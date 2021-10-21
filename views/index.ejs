@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+        <%-` <script>
+            var askUname = ${askUname};
+            var roomid="${rid}";
+
+            </script>
+            ` %>
+
+            <title>uChat</title>
+</head>
+
+<body>
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title join">Konichiwa</h5>
+                </div>
+                <form action="/" method="post" class="me">
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">nickname~</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default" name="username">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">room-id</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default" name="rid">
+                        </div>
+                    </div>
+                
+                    <div class="modal-footer">
+
+                        <button class="btn btn-success">Join</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column-reverse">
+        <div class="messages">
+            <h2>All chats</h2>
+            <ul class="list-group list-group-flush">
+                <% for( let msg of messages) { %>
+                    <li><p><%= `${msg.from.username} : ${msg.message}` %> </p></li>
+                <% } %>
+
+            </ul>
+
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control msg" placeholder="messaage" aria-label="message"
+                aria-describedby="button-addon2">
+            <button type="submit" class="btn btn-outline-secondary send" type="button" id="button-addon2">Send</button>
+        </div>
+    </div>
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>
