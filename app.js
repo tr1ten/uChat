@@ -12,7 +12,7 @@ if(typeof process.env.NODE_ENV ==="undefined"|| process.env.NODE_ENV=="developme
 const app = express()
 const dbUrl = process.env.ATLAS_URL;
 console.log('db url ',dbUrl);
-const port = 3000
+const port = process.env.PORT || 8080;
 //Set up default mongoose connection
 const chatrooms = ['private'];
 mongoose.connect(dbUrl, { useNewUrlParser: true });
