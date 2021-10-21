@@ -5,8 +5,13 @@ const mongoose = require('mongoose');
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const { User, UserMessage } = require('./modals/user')
+if(typeof process.env.NODE_ENV ==="undefined"|| process.env.NODE_ENV=="development"){
+    require('dotenv').config()
+}
+
 const app = express()
-const dbUrl = 'mongodb://localhost:27017/uchat';
+const dbUrl = process.env.ATLAS_URL;
+console.log('db url ',dbUrl);
 const port = 3000
 //Set up default mongoose connection
 const chatrooms = ['private'];
