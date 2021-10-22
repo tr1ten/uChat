@@ -44,7 +44,7 @@ app.get('/', async (req, res) => {
         res.locals.askUname = false;
         const messages = await  UserMessage.find({room:req.session.rid}).populate('from');
     
-        res.render('index', { 'totalusers':countUsers[req.session.rid],'uname':req.session.username,'askUname': false, 'rid': req.session.rid ,'messages':(typeof messages === "undefined" ? [] : messages)})
+        res.render('index', { 'totalusers':!countUsers[req.session.rid] ? 0 : countUsers[req.session.rid],'uname':req.session.username,'askUname': false, 'rid': req.session.rid ,'messages':(typeof messages === "undefined" ? [] : messages)})
 
     }
     else {
