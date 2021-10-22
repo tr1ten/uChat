@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 
 <head>
     <meta charset='UTF-8'>
@@ -10,69 +10,100 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>UChat</title>
     <script src="/socket.io/socket.io.js"></script>
-        <%-` <script>
-            var askUname = ${askUname};
-            var roomid="${rid}";
+    <%-` <script>
+        var askUname = ${askUname};
+        var roomid="${rid}";
+        var uname = "${uname}";
+        var totalusers = ${totalusers};
 
-            </script>
-            ` %>
+        </script>
+        ` %>
 
-            <title>uChat</title>
+        <title>uChat</title>
 </head>
 
 <body>
-    <div class="modal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title join">Konichiwa</h5>
+    <main>
+        <div class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title join">Konichiwa</h5>
+                    </div>
+                    <form action="/" method="post" class="me">
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">nickname~</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" name="username">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">room-id</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" name="rid">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button class="btn btn-success">Join</button>
+
+                        </div>
+                    </form>
                 </div>
-                <form action="/" method="post" class="me">
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">nickname~</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-default" name="username">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">room-id</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-default" name="rid">
-                        </div>
-                    </div>
-                
-                    <div class="modal-footer">
-
-                        <button class="btn btn-success">Join</button>
-
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
 
-    <div class="d-flex flex-column-reverse">
-        <div class="messages">
-            <h2>All chats</h2>
-            <ul class="list-group list-group-flush">
-                <% for( let msg of messages) { %>
-                    <li><p><%= `${msg.from.username} : ${msg.message}` %> </p></li>
-                <% } %>
+        <div class="box">
+            <div class="sidebar">
+                <img src="assets/anime.png" alt="">
+                <h2>Uchat</h2>
+                <ul>
+                    <li><span class="ques">Room id:</span><span class="ans"><%= rid%> </span></li>
+                    <li><span class="ques">nickname:</span><span class="ans"><%= uname %> </span></li>
 
-            </ul>
+                    <li><span class="ques">users:</span><span class="ans countuser"><%= totalusers %> </span></li>
+                </ul>
 
+
+
+            </div>
+            <div class="chat-box">
+                <div class="messages messages-box blur">
+                    <ul>
+                        <% for( let msg of messages) { %>
+
+                            <li class="<%= msg.from.username==uname ? "outmsg" : "inmsg" %> "><p><%= `${msg.from.username} : ${msg.message}` %> </p></li>
+                        <% } %>
+                        <li class="inmsg">
+                            <div>
+                                Hy!
+                            </div>
+                        </li>
+                        <li class="outmsg">
+                            <div>
+                                By!
+                            </div>
+
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="input-box">
+                    <input type="text" class="msg" placeholder="type your messaage..">
+                    <button class="send"><img src="https://img.icons8.com/plumpy/96/000000/filled-sent.png" /></button>
+                </div>
+            </div>
         </div>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control msg" placeholder="messaage" aria-label="message"
-                aria-describedby="button-addon2">
-            <button type="submit" class="btn btn-outline-secondary send" type="button" id="button-addon2">Send</button>
-        </div>
-    </div>
+
+    </main>
     <script src="./scripts/main.js"></script>
 </body>
 

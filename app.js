@@ -8,7 +8,7 @@ const { User, UserMessage } = require('./modals/user')
 if(typeof process.env.NODE_ENV ==="undefined"|| process.env.NODE_ENV=="development"){
     require('dotenv').config()
 }
-
+countUsers = {};
 const app = express()
 const dbUrl = process.env.ATLAS_URL;
 console.log('db url ',dbUrl);
@@ -44,12 +44,12 @@ app.get('/', async (req, res) => {
         res.locals.askUname = false;
         const messages = await  UserMessage.find({room:req.session.rid}).populate('from');
     
-        res.render('index', { 'askUname': false, 'rid': req.session.rid ,'messages':(typeof messages === "undefined" ? [] : messages)})
+        res.render('index', { 'totalusers':countUsers[req.session.rid],'uname':req.session.username,'askUname': false, 'rid': req.session.rid ,'messages':(typeof messages === "undefined" ? [] : messages)})
 
     }
     else {
         // console.log('user not exists');
-        res.render('index', { 'askUname': true, 'rid': 'chat message','messages':[] })
+        res.render('index', {'totalusers':0, 'uname':false,'askUname': true, 'rid': 'chat message','messages':[] })
     }
 
 });
@@ -77,7 +77,17 @@ io.use((socket, next) => {
 })
 io.on('connection', (socket) => {
     const rid = socket.request.session.rid;
+    if(countUsers[rid]){
+        
+
+            countUsers[rid]++;
+        
+    }
+    else{
+        countUsers[rid] = 1;
+    }
     const username = socket.request.session.username;
+
     console.log(`${username} connected to ${rid}`);
     if (username) {
         io.emit(`join-user-${rid}`, username)
@@ -99,6 +109,7 @@ io.on('connection', (socket) => {
 
 
     socket.on('disconnect', () => {
+        countUsers[rid]--;
         console.log('user disconnected');
         if (username) {
 

@@ -1,0 +1,248 @@
+@media (max-width: 560px) {
+    .box {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+    .box .sidebar {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row
+    }
+    .box .sidebar img {
+        max-width: 0px;
+        height: 0px
+    }
+    .box .sidebar {
+        min-width: 100%;
+        max-height: 30%
+    }
+}
+
+.ques {
+    background-color: greenyellow;
+    border-radius: 15px 0 0 0;
+    padding: 0.3em;
+    text-align: center;
+    margin: 2px;
+    color: #009400
+}
+
+.ans {
+    font-size: 1.2em
+}
+
+html {
+    height: 100%;
+    width: 100%
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+a {
+    text-decoration: none
+}
+
+ul {
+    list-style: none
+}
+
+body {
+    line-height: 1.6em;
+    background-color: #ffdae0;
+    height: 100%;
+    width: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.box {
+    width: 70%;
+    height: 70%;
+    margin: auto;
+    border: 2px solid white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.box .sidebar {
+    height: 100%;
+    width: 35%;
+    background-color: orange;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    border: 2px solid white
+}
+
+.box .sidebar h2 {
+
+    text-align: center;
+    color: red;
+}
+
+.box .sidebar ul {
+    padding:0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items: flex-start;
+    -ms-flex-pack: distribute;
+}
+
+.box .sidebar ul li {
+    margin: 4px 3px
+}
+
+.box .sidebar img {
+    margin: 4px;
+    width: 60%;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center
+}
+
+.box .chat-box {
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.box .messages-box {
+    
+    height: 80%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items:space-between;
+    font-size: 1em;
+}
+
+.box .messages-box ul {
+    overflow-y:scroll;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    
+}
+
+.box .messages-box .inmsg {
+    display: inline-block;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    padding: 1px 10px;
+    margin: 5px;
+    max-width: 70%;
+    background-color: greenyellow;
+    border-radius: 1px 10px 10px 10px
+}
+
+.box .messages-box .outmsg {
+    padding: 1px 10px;
+    margin: 5px;
+    max-width: 70%;
+    display: inline-block;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    background-color: rgba(27, 145, 27, 0.918);
+    border-radius: 10px 10px 1px 10px
+}
+
+.box .input-box {
+    width: 100%;
+    height: 15%;
+    margin: 0 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.box .input-box input {
+    margin: 0 2px;
+    width: 100%;
+    height: 60%;
+    border-radius: 14px
+}
+
+.box .input-box button {
+    background-color: transparent;
+    border-radius: 2px;
+    height: 100%;
+    padding: 2px 1em;
+    border: none
+}
+
+.box .input-box button img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.box .input-box button img:hover {
+    -webkit-transform: translate(4px);
+    transform: translate(4px);
+    cursor: pointer
+}
+.notify {
+    text-align: center;
+    background-color:transparent;
+    border:none;
+
+}
